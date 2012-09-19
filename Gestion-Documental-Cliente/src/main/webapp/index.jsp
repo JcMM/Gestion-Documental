@@ -560,28 +560,28 @@
 <div id="topPan"> 
   <p>&nbsp;</p>
   <p>&nbsp;</p>
-  <p class="Estilo1"> <span class="Estilo5">Gestion Documental</span> </a>  </p>
+  <p class="Estilo1"><a href="index.jsp"><span class="Estilo5">Gestion Documental</span> </a>  </p>
   <ul>
-    <li><span>Datos Generales </span></li>
-    <li><a href="#">Seguimiento</a></li>
-    <li><a href="#">Anexos</a></li>
-    <li><a href="#">Recibo</a></li>
-    <li><a href="#">Contactenos</a></li>
+  	<li><a href="principal.jsp">Datos Generales</a></li>
+    <li><a href="seguimiento.jsp">Seguimiento</a></li>
+    <li><a href="anexos.jsp">Anexos</a></li>
+    <li><a href="recibo.jsp">Recibo</a></li>
+    <li><a href="contactenos.jsp">Contactenos</a></li>
   </ul>
 </div>
 <div id="headerPan">
   <div id="headerPanleft">
     <div id="ourblog">
       <h2>Datos Generales</h2>
-      <a href="#">&nbsp;</a> </div>
+      <a href="principal.jsp">&nbsp;</a> </div>
     <div id="possib">
       <h2>Seguimiento</h2>
       <p>Seguimiento</p>
-      <a href="#">&nbsp;</a> </div>
+      <a href="seguimiento.jsp">&nbsp;</a> </div>
     <div id="solution">
       <h2>Anexos</h2>
       <p>Anexos</p>
-      <a href="#">&nbsp;</a> </div>
+      <a href="anexos.jsp">&nbsp;</a> </div>
   </div>
   <div id="leftmemberPan">
     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="499" height="239">

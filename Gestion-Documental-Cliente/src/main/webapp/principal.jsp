@@ -552,7 +552,7 @@
 <div id="topPan"> 
   <p>&nbsp;</p>
   <p>&nbsp;</p>
-  <p class="Estilo1"> <span class="Estilo5">Gestion Documental</span> </a>  </p>
+  <p class="Estilo1"><a href="index.jsp"><span class="Estilo5">Gestion Documental</span> </a>  </p>
   <ul>
     <li><a href="principal.jsp">Datos Generales</a></li>
     <li><a href="seguimiento.jsp">Seguimiento</a></li>
@@ -565,7 +565,7 @@
   <div id="headerPanleft">
     <div id="ourblog">
       <h2>Datos Generales</h2>
-      <a href="datosgenerales.jsp">&nbsp;</a> </div>
+      <a href="principal.jsp">&nbsp;</a> </div>
     <div id="possib">
       <h2>Seguimiento</h2>
       <p>Seguimiento</p>

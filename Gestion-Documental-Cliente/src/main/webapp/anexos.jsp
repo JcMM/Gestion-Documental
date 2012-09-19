@@ -616,11 +616,11 @@
 <div id="topPan"> 
   <p>&nbsp;</p>
   <p>&nbsp;</p>
-  <p class="Estilo1"> <span class="Estilo5">Gestion Documental</span> </a>  </p>
+  <p class="Estilo1"><a href="index.jsp"><span class="Estilo5">Gestion Documental</span> </a>  </p>
   <ul>
-    <li><a href="principal.jsp">Datos Generales</a></li>
+  	<li><a href="principal.jsp">Datos Generales</a></li>
     <li><a href="seguimiento.jsp">Seguimiento</a></li>
-    <li><span>Anexos</span></li>
+    <li><a href="anexos.jsp">Anexos</a></li>
     <li><a href="recibo.jsp">Recibo</a></li>
     <li><a href="contactenos.jsp">Contactenos</a></li>
   </ul>
