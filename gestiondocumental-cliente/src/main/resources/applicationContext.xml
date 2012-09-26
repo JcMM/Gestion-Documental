@@ -5,6 +5,6 @@
 	
      <jaxws:client id="gestiondocumentalServiceClient" serviceName="GestiondocumentalServiceImpl"
       serviceClass="pe.com.munmiraflores.gestiondocumental.service.GestiondocumentalService" 
-      address="http://sis04pe:8080/gestiondocumental-soap/GestiondocumentalService" />
+      address="http://localhost:28080/gestiondocumental-soap/GestiondocumentalService" />
           
 </beans>

@@ -5,6 +5,17 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   
+  <servlet>
+  <description></description>
+  <display-name>DatosGeneralesServlet</display-name>
+  <servlet-name>DatosGeneralesServlet</servlet-name>
+  <servlet-class>pe.com.munmiraflores.gestiondocumental.servlet.DatosGeneralesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DatosGeneralesServlet</servlet-name>
+  <url-pattern>/DatosGeneralesServlet</url-pattern>
+  </servlet-mapping>  
+  
   <context-param>
      <param-name>contextConfigLocation</param-name>
      <param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -22,7 +33,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/gestion/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

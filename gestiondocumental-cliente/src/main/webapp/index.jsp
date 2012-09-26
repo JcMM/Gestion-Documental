@@ -609,12 +609,6 @@
 <form action="DatosGeneralesServlet" method="post">
 <div id="bodyPan">
   <div id="leftPan">
-  <div class="Estilo4" id="Layer9">A&Ntilde;o: </div>
-	<div id="Layer10">
-  <label>
-  <input name="textndocumento1" type="text" size="9" />
-  </label>
-</div>
     <div id="Layer2">
       <div id="Layer3">
         <div align="center" class="Estilo2">
@@ -630,19 +624,21 @@
     <hr />
     <div id="Layer8">
   <label>
-  <input name="textndocumento2" type="text" class="textposition" size="13" />
+  <input name="textndocumento1" type="text" class="textposition" size="13" />
   </label>
 </div>
 	
 	<div class="Estilo4" id="Layer9">TIPO DE DOCUMENTO: </div>
 	<div id="Layer10">
   <label>
-  <input name="textndocumento3" type="text" size="9" />
+  <input name="textndocumento2" type="text" size="9" />
   </label>
 </div>
     <div class="Estilo4" id="Layer13">
       <label>
       <select name="select">
+      	<option value="">-ELIGE-</option>
+      	<option value="EXPE">EXPE</option>
       </select>
       </label>
     </div>

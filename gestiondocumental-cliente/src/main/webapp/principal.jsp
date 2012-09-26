@@ -613,19 +613,19 @@
         
       </div>
       <div class="Estilo3" id="Layer4">Nro
-        <label>${tiponumeroanio}</label>
+        <label><%=request.getAttribute("tiponumeroanio")%></label>
          :
          <label>
-          <input name="textnro" type="text" size="10" value="${solicitante}" />
+          <input name="textnro" type="text" size="10" value="<%=request.getAttribute("solicitante")%>" />
         </label>
       </div>
       <div class="Estilo3" id="Layer5">Fecha Ingreso :
         <label>
-        <input name="textfeching" type="text" size="12" value="${fecingreso}" />
+        <input name="textfeching" type="text" size="12" value="<%=request.getAttribute("fecingreso")%>" />
         </label>
       </div>
       <div class="Estilo3" id="Layer6">Estado :
-        <input name="textestado" type="text" size="16" value="${estado}" />
+        <input name="textestado" type="text" size="16" value="<%=request.getAttribute("estado")%>" />
       </div>
     </div>
     <hr />
@@ -638,7 +638,7 @@
 	<div class="Estilo4" id="Layer9">Dni : </div>
 	<div id="Layer10">
   <label>
-  <input type="text" name="textdni" value="${dni}" />
+  <input type="text" name="textdni" value="<%=request.getAttribute("dni")%>" />
   </label>
 </div>
 <div id="Layer11">
@@ -671,7 +671,7 @@
 <div class="Estilo4" id="Layer20">Cargo Destino : </div>
 <div id="Layer21">
   <label>
-  <input name="textcdestino" type="text" size="59" value="${cargoactual}" />
+  <input name="textcdestino" type="text" size="59" value="<%=request.getAttribute("cargoactual")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer22">Fecha Recepci&oacute;n : </div>
@@ -684,25 +684,25 @@
 <div class="Estilo4" id="Layer25">Fiscal : </div>
 <div id="Layer26">
   <label>
-  <input name="textfiscal" type="text" size="59" value="${direfiscal}" />
+  <input name="textfiscal" type="text" size="59" value="<%=request.getAttribute("direfiscal")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer27">Correspondencia : </div>
 <div id="Layer28">
   <label>
-  <input name="textcorrespondencia" type="text" size="59" value="${dircorrespondencia}" />
+  <input name="textcorrespondencia" type="text" size="59" value="<%=request.getAttribute("dircorrespondencia")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer29">Inmueble : </div>
 <div id="Layer30">
   <label>
-  <input name="textinmueble" type="text" size="59" value="${dirinmueble}" />
+  <input name="textinmueble" type="text" size="59" value="<%=request.getAttribute("dirinmueble")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer31">Observaciones : </div>
 <div id="Layer32">
   <label>
-  <input name="textobservaciones" type="text" size="59" value="${observaciones}" />
+  <input name="textobservaciones" type="text" size="59" value="<%=request.getAttribute("observaciones")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer33">Observaci&oacute;n Situacional : </div>
@@ -732,7 +732,7 @@
 <div class="Estilo6" id="Layer41">Hoja Cargo ? </div>
 <div id="Layer42">
   <label>
-  <input name="texthcargo" type="text" size="5" value="${hojadecargo}" />
+  <input name="texthcargo" type="text" size="5" value="<%=request.getAttribute("hojadecargo")%>" />
   </label>
 </div>
 <div id="Layer43">
@@ -743,13 +743,13 @@
 <div class="Estilo6" id="Layer44">Anexado ? </div>
 <div id="Layer45">
   <label>
-  <input name="textanexado" type="text" size="5" value="${anexado}" />
+  <input name="textanexado" type="text" size="5" value="<%=request.getAttribute("anexado")%>" />
   </label>
 </div>
 <div class="Estilo6" id="Layer46">Archivado ? </div>
 <div id="Layer47">
   <label>
-  <input name="textarchivado" type="text" size="5" value="${archivado}" />
+  <input name="textarchivado" type="text" size="5" value="<%=request.getAttribute("archivado")%>" />
   </label>
 </div>
 <div class="Estilo5" id="Layer48">Auditoria</div>	
@@ -757,13 +757,13 @@
 <div class="Estilo4" id="Layer50">Usuario : </div>
 <div id="Layer51">
   <label>
-  <input name="textcusuario" type="text" size="15" value="${usuariocreacion}" />
+  <input name="textcusuario" type="text" size="15" value="<%=request.getAttribute("usuariocreacion")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer52">Fecha : </div>
 <div id="Layer53">
   <label>
-  <input name="textcfecha" type="text" size="12" value="${feccreacion}" />
+  <input name="textcfecha" type="text" size="12" value="<%=request.getAttribute("feccreacion")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer54">Hora : </div>
@@ -776,13 +776,13 @@
 <div class="Estilo4" id="Layer57">Usuario :</div>
 <div id="Layer58">
   <label>
-  <input name="textmusuario" type="text" size="15" value="${usuariomodifica}" />
+  <input name="textmusuario" type="text" size="15" value="<%=request.getAttribute("usuariomodifica")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer59">Fecha : </div>
 <div id="Layer60">
   <label>
-  <input name="textmfecha" type="text" size="12" value="${fecmod}" />
+  <input name="textmfecha" type="text" size="12" value="<%=request.getAttribute("fecmod")%>" />
   </label>
 </div>
 <div class="Estilo4" id="Layer61">Hora : </div>

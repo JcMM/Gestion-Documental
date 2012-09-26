@@ -27,9 +27,13 @@ public class DatosGeneralesServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int anio = Integer.parseInt(request.getParameter("textndocumento1"));
 		int nrodoc = Integer.parseInt(request.getParameter("textndocumento2"));
-		String tipodoc = request.getParameter("textndocumento3");
+		String tipodoc = request.getParameter("select");
 		Documentos d = new Documentos();
 		try {
 			d = gestiondocumentalService.getDatosGenerales(anio, nrodoc, tipodoc);//(2012, 100, "EXPE");
