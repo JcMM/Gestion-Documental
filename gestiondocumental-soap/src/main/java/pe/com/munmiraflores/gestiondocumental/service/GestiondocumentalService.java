@@ -14,7 +14,9 @@ public interface GestiondocumentalService {
 	
 	public Documentos getDatosGenerales(
 			@WebParam(name = "docanonum") Integer docanonum,
+			
 			@WebParam(name = "doccor") Integer doccor,
+			
 			@WebParam(name = "tpodoccod") String tpodoccod
 			) throws Exception;
 
