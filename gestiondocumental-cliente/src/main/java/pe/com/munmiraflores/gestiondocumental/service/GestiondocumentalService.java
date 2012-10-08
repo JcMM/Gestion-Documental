@@ -1,7 +1,5 @@
 package pe.com.munmiraflores.gestiondocumental.service;
 
-import java.util.List;
-
 import javax.jws.WebParam;
 import javax.jws.WebService;
 

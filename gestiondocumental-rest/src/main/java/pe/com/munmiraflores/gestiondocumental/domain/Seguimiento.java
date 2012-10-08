@@ -1,10 +1,16 @@
 package pe.com.munmiraflores.gestiondocumental.domain;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "seguimiento")
-public class Seguimiento {
+public class Seguimiento implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer doccod;
 	private Integer segcod;
 	private String segglo;
@@ -31,10 +37,58 @@ public class Seguimiento {
 	private Integer segdocsts;
 	private Integer segstscod;
 	private String origen;
-	private String destino;
+	private String destino;	
 	private String usuario;
 	private Tareas tareas;
 	private Estados estados;
+
+	public Seguimiento(){}
+	
+	
+	
+	public Seguimiento(Integer doccod, Integer segcod, String segglo,
+			Integer pcdid, Integer tarcod, String segprfcod, Integer segusrcod,
+			Integer seguoorico, Integer segcaroric, Integer segemporic,
+			Integer segemporii, Integer seguodesco, Integer segcardesc,
+			Integer segempdesc, Integer segempdesi, String segfch,
+			String seghra, Integer segusr, String segtpodest, String segwksmod,
+			String segwkscre, Integer segpcsid, Integer segtarrsl,
+			Integer segdocsts, Integer segstscod, String origen,
+			String destino, String usuario, Tareas tareas, Estados estados) {
+		super();
+		this.doccod = doccod;
+		this.segcod = segcod;
+		this.segglo = segglo;
+		this.pcdid = pcdid;
+		this.tarcod = tarcod;
+		this.segprfcod = segprfcod;
+		this.segusrcod = segusrcod;
+		this.seguoorico = seguoorico;
+		this.segcaroric = segcaroric;
+		this.segemporic = segemporic;
+		this.segemporii = segemporii;
+		this.seguodesco = seguodesco;
+		this.segcardesc = segcardesc;
+		this.segempdesc = segempdesc;
+		this.segempdesi = segempdesi;
+		this.segfch = segfch;
+		this.seghra = seghra;
+		this.segusr = segusr;
+		this.segtpodest = segtpodest;
+		this.segwksmod = segwksmod;
+		this.segwkscre = segwkscre;
+		this.segpcsid = segpcsid;
+		this.segtarrsl = segtarrsl;
+		this.segdocsts = segdocsts;
+		this.segstscod = segstscod;
+		this.origen = origen;
+		this.destino = destino;
+		this.usuario = usuario;
+		this.tareas = tareas;
+		this.estados = estados;
+	}
+
+
 
 	public Integer getDoccod() {
 		return doccod;

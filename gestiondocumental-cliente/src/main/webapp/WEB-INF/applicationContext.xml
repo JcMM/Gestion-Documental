@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
@@ -8,7 +9,8 @@
 	   		http://www.springframework.org/schema/context
 	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			http://www.springframework.org/schema/mvc 
-			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
@@ -21,4 +23,39 @@
 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
 	<mvc:annotation-driven />
 
+
+ 	<jaxws:client id="gestiondocumentalServiceClient" serviceName="GestiondocumentalServiceImpl"
+      serviceClass="pe.com.munmiraflores.gestiondocumental.service.GestiondocumentalService" 
+      address="http://localhost:8080/gestiondocumental-soap/GestiondocumentalService" />
+      
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+    <!-- 
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+    <property name="messageConverters">
+    <list>
+      <bean id="messageConverter"
+            class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+        <property name="marshaller" ref="xstreamMarshaller" />
+        <property name="unmarshaller" ref="xstreamMarshaller" />
+      </bean>
+    </list>
+    </property>
+  </bean>
+  
+  <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+    <property name="aliases">
+    <props>
+      <prop key="documento">pe.com.munmiraflores.gestiondocumental.domain.Documentos</prop>
+      <prop key="estado">pe.com.munmiraflores.gestiondocumental.domain.Estados</prop>
+      <prop key="seguimiento">pe.com.munmiraflores.gestiondocumental.domain.Seguimiento</prop>
+      <prop key="seguimientos">pe.com.munmiraflores.gestiondocumental.domain.Seguimientos</prop>      
+      <prop key="tarea">pe.com.munmiraflores.gestiondocumental.domain.Tareas</prop>
+    </props>
+    </property>
+  </bean>
+  
+    -->
+    
+     
 </beans>

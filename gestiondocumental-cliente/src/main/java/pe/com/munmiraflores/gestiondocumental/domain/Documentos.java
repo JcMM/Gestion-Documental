@@ -87,6 +87,7 @@ public class Documentos {
 	private Usuarios usuariosa;
 	private Usuarios usuariosb;
 
+	
 	public Integer getDoccod() {
 		return doccod;
 	}
@@ -735,4 +736,9 @@ public class Documentos {
 		this.usuariosb = usuariosb;
 	}
 
+	public String getTiponumeroanio() {
+		 return getTpodoccod()+"-"+getDoccor()+"-"+getDocanonum();
+	}
+
+	
 }

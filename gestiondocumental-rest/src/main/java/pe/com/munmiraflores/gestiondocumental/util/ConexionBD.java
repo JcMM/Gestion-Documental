@@ -11,7 +11,7 @@ public static Connection obtenerConexion() throws SQLException {
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection("jdbc:mysql://localhost/gestiondocumental",
-					"root", "root");
+					"root", "mysql");
 	} catch (ClassNotFoundException e) {
 		e.printStackTrace();
 	} catch (Exception e) {

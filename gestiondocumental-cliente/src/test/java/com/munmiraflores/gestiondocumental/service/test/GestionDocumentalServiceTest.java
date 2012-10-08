@@ -1,18 +1,12 @@
 package com.munmiraflores.gestiondocumental.service.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pe.com.munmiraflores.gestiondocumental.domain.Cargo;
 import pe.com.munmiraflores.gestiondocumental.domain.Documentos;
-import pe.com.munmiraflores.gestiondocumental.domain.Estados;
-import pe.com.munmiraflores.gestiondocumental.domain.Personas;
-import pe.com.munmiraflores.gestiondocumental.domain.UnidadOrganica;
 import pe.com.munmiraflores.gestiondocumental.service.GestiondocumentalService;
+
 
 public class GestionDocumentalServiceTest {
 

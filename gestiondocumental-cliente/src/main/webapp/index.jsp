@@ -562,11 +562,11 @@
   <p>&nbsp;</p>
   <p class="Estilo1"><a href="index.jsp"><span class="Estilo5">Gestion Documental</span> </a>  </p>
   <ul>
-  	<li><a href="principal.jsp">Datos Generales</a></li>
-    <li><a href="seguimiento.jsp">Seguimiento</a></li>
-    <li><a href="anexos.jsp">Anexos</a></li>
-    <li><a href="recibo.jsp">Recibo</a></li>
-    <li><a href="contactenos.jsp">Contactenos</a></li>
+  	<li><a href="#">Datos Generales</a></li>
+    <li><a href="#">Seguimiento</a></li>
+    <li><a href="#">Anexos</a></li>
+    <li><a href="#">Recibo</a></li>
+    <li><a href="#">Contactenos</a></li>
   </ul>
 </div>
 <div id="headerPan">
@@ -592,23 +592,12 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<form action="DatosGeneralesServlet" method="post">
+<form action="gestion/datosGenerales.htm" method="post">
 <div id="bodyPan">
   <div id="leftPan">
+  
+  <div class="Estilo5" id="Layer65">Consultas Tr&aacute;mite Documentario </div>
+  
     <div id="Layer2">
       <div id="Layer3">
         <div align="center" class="Estilo2">
@@ -616,24 +605,16 @@
           <hr />
           <p>&nbsp;</p>
         </div>
-        <label></label>
-        <div class="Estilo4" id="Layer7">INGRESE NUMERO DE DOCUMENTO  : </div>
-        
+        <div class="Estilo4" id="Layer7">INGRESE NUMERO DE DOCUMENTO: </div>        
       </div>
       </div>
-    <hr />
-    <div id="Layer8">
-  <label>
-  <input name="textndocumento1" type="text" class="textposition" size="13" />
-  </label>
-</div>
+    	<hr />
+    	
+    <div id="Layer8"> <input name="textndocumento1" type="text" class="textposition" size="6" maxlength="4"/> </div>
 	
 	<div class="Estilo4" id="Layer9">TIPO DE DOCUMENTO: </div>
-	<div id="Layer10">
-  <label>
-  <input name="textndocumento2" type="text" size="9" />
-  </label>
-</div>
+	<div id="Layer10"><input name="textndocumento2" type="text" size="13" maxlength="10"/> </div>
+	
     <div class="Estilo4" id="Layer13">
       <label>
       <select name="select">
@@ -644,29 +625,15 @@
     </div>
 	
     <div id="Layer17">
-  <label></label>
-  <hr />
-  <hr />
-</div>
-	<div id="Layer63">
-  <label>
-  <input type="submit" name="Submit" value="Consultar" />
-  </label>
-</div>
-    <div class="Estilo5" id="Layer65">Consultas Tr&aacute;mite Documentario </div>
-	
-	
-	
-	
+  		<label></label>
+  		<hr />
+  		<hr />
+	</div>
+	<div id="Layer63"><input type="submit" name="Submit" value="Consultar" /></div>
+    
   </div>
+  
 </div>
-
-
-
-
-
-
 </form>
-
 </body>
 </html>

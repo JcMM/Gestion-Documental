@@ -801,19 +801,8 @@
   <input type="reset" name="Submit2" value="Salir" />
   </label>
 </div>
-	
-	
-	
-	
-	
   </div>
 </div>
-
-
-
-
-
-
 </form>
 
 </body>

@@ -6,8 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection; 
+import java.util.List;
 
+import pe.com.munmiraflores.gestiondocumental.domain.Anexo;
+import pe.com.munmiraflores.gestiondocumental.domain.DetRecibo;
 import pe.com.munmiraflores.gestiondocumental.domain.Estados;
+import pe.com.munmiraflores.gestiondocumental.domain.Recibos;
 import pe.com.munmiraflores.gestiondocumental.domain.Seguimiento;
 import pe.com.munmiraflores.gestiondocumental.domain.Tareas;
 import pe.com.munmiraflores.gestiondocumental.exception.DAOExcepcion;
@@ -35,7 +39,7 @@ public class SeguimientoDAO extends BaseDAO {
 				"      and D.TPODOCCOD = ? " +
 				"ORDER BY S.SEGCOD DESC";
 				//"SELECT idtipousuario,descripcion FROM tipousuario";
-		Collection<Seguimiento> listaSeguimiento = new ArrayList<Seguimiento>();
+		List<Seguimiento> listaSeguimiento = new ArrayList<Seguimiento>();
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -74,4 +78,142 @@ public class SeguimientoDAO extends BaseDAO {
 		}
 		return listaSeguimiento;
 	}
+	
+	
+	public Recibos getRecibo(Integer docanonum, Integer doccor, String tpodoccod) throws DAOExcepcion {
+		System.out.println("SeguimientoDAO: getRecibo()");
+		String query = "select R.DOCCOD, "+
+				       "R.DOCRECITM AS ITEM,R.DOCRECTPO AS TIPO, "+
+				       "R.DOCRECSER AS SERIE,R.DOCRECNRO AS COMPROBANTE, R.DOCRECMNT AS MONTO, "+
+				       "R.DOCRECFPAG AS FECHA, "+
+				       "R.DOCRECFACT "+
+				       "from tdddoc06 R, TDDDOC01 D "+
+				       "where R.DOCCOD = D.DOCCOD AND "+
+				       "D.TPODOCCOD = ? AND "+
+				       "D.DOCANONUM = ? AND "+
+				       "D.DOCCOR = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Recibos objRecibo= null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, tpodoccod);
+			stmt.setInt(2, docanonum);
+			stmt.setInt(3, doccor);
+			rs = stmt.executeQuery();
+			System.out.println( "ejecutando + " + query );
+			if (rs.next()) {	
+				System.out.println("while");
+				objRecibo = new Recibos();
+				objRecibo.setDoccod(rs.getInt("DOCCOD"));
+				objRecibo.setDocrecitm( rs.getInt("ITEM") );				
+				objRecibo.setDocrectpo(rs.getInt("TIPO"));
+				objRecibo.setDocrecser(rs.getInt("SERIE"));
+				objRecibo.setDocrecnro(rs.getInt("COMPROBANTE"));
+				objRecibo.setDocrecmnt( Double.parseDouble(rs.getString("MONTO")) );
+				objRecibo.setDocrecfecc(rs.getString("FECHA"));
+				objRecibo.setDocrecfact(rs.getInt("DOCRECFACT"));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOExcepcion(e.getMessage());
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return objRecibo;
+	}
+	
+	public List<DetRecibo> getDetalleRecibo(Integer docanonum  ) throws DAOExcepcion {
+		System.out.println("SeguimientoDAO: getRecibo()");
+		String query = "select  F.TFACTID, "+
+        			" F.TCCPDET AS CONCEPTO_DE_PAGO, F.TFACTOTAL AS IMPORTE "+
+        			" from detrec F , tdddoc06 R "+
+        			" WHERE F.TFACTID = R.DOCRECFACT AND"+  
+        			" R.DOCRECFACT = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		DetRecibo objRecibo= null;
+		List<DetRecibo> lista = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, docanonum);
+			rs = stmt.executeQuery();
+			lista = new ArrayList<DetRecibo>();
+			while (rs.next()) {				
+				objRecibo = new DetRecibo();
+				objRecibo.setDoccod(rs.getInt("TFACTID"));
+				objRecibo.setConcepto(rs.getString("CONCEPTO_DE_PAGO"));
+				objRecibo.setImporte(Double.parseDouble( rs.getString("IMPORTE") ));
+				lista.add(objRecibo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return lista;
+	}
+	
+	public List<Anexo> getAnexos(Integer docanonum, Integer doccor, String tpodoccod) throws DAOExcepcion {
+		System.out.println("SeguimientoDAO: getRecibo()");
+		String query = "select " + 
+				      " CONCAT(D.TPODOCCOD, '-', D.DOCANONUM, '-', D.DOCCOR) NRO_DOCUMENTO," + 
+				      " R.RELDOCFINI AS FECH_INICIO,R.RELDOCFFIN AS FECH_FIN,U.UNIORGSIG AS UO_ORIGEN," + 
+				      " D.DOCASU AS ASUNTO ,R.RELDOCOBS AS OBSERVACION,D.DOCUBIFOL AS UBICACION_FOLIO" + 
+						" from tddrdo01 R" + 
+						" INNER JOIN tdddoc01 T ON T.DOCCOD = R.RELDOCPDEC" + 
+						" INNER JOIN TDDDOC01 D ON D.DOCCOD = R.RELDOCHJOC" + 
+						" INNER JOIN RHDUOR01 U ON U.UNIORGCOD = D.DOCUOORICO" + 
+						" where" + 
+						" R.RELDOCFFIN = STR_TO_DATE('2039-12-31','%Y-%m-%d') AND R.TRELCOD = 1" + 
+						" AND T.TPODOCCOD = ?" + 
+						" AND T.DOCANONUM = ?" + 
+						" AND T.DOCCOR = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Anexo obj= null;
+		List<Anexo> lista = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, tpodoccod);
+			stmt.setInt(2, docanonum);
+			stmt.setInt(3, doccor);
+			rs = stmt.executeQuery();
+			lista = new ArrayList<Anexo>();
+			while (rs.next()) {				
+				obj = new Anexo();
+				obj.setAsunto( rs.getString("ASUNTO"));
+				obj.setFecFin( rs.getString("FECH_FIN"));
+				obj.setFecInicio(rs.getString("FECH_INICIO"));
+				obj.setNroDocumento(rs.getString("NRO_DOCUMENTO"));
+				obj.setObservacion(rs.getString("OBSERVACION"));
+				obj.setOrigen(rs.getString("UO_ORIGEN"));
+				obj.setUbicacionFolio(rs.getString("UBICACION_FOLIO"));
+				lista.add(obj);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return lista;
+	}
+	
 }

@@ -2,7 +2,10 @@ package pe.com.munmiraflores.gestiondocumental.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @XmlRootElement(name = "seguimiento")
+@JsonIgnoreProperties({"seguimientos", "seguimiento"})
 public class Seguimiento {
 	
 	private Integer doccod;
@@ -31,6 +34,7 @@ public class Seguimiento {
 	private Integer segdocsts;
 	private Integer segstscod;
 	private String origen;
+	
 	private String destino;
 	private String usuario;
 	private Tareas tareas;
