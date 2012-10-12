@@ -1,9 +1,18 @@
 package pe.com.munmiraflores.gestiondocumental.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+
 @XmlRootElement(name = "usuarios")
-public class Usuarios {
+public class Usuarios extends User{
 
 	private Integer usrcod;
 	private String usrapepat;
@@ -29,16 +38,46 @@ public class Usuarios {
 	private String usrclv2;
 	private Integer usrvcrono;
 
-	public Usuarios() {}
+	
+	//usrlog -> useername
+	private String clave;
+	private Integer estado;
+	
+	 public static Usuarios getUsuarioBean() {
+		 Usuarios nu = (Usuarios)(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+         if(nu != null) {
+                 return nu;
+         }
+         else return null;
+	 }
+	 
+	 public static List<GrantedAuthority> uno(){
+         List<GrantedAuthority> oo = new ArrayList<GrantedAuthority>(); 
+         oo.add(new GrantedAuthorityImpl("IS_AUTHENTICATED_ANONYMOUSLY") );
+         return oo;
+	 }
+		 
+	public Usuarios(String username, String password, boolean enabled, Collection<GrantedAuthority> authorities) {
+		  super(username, password, enabled, true, true, true, authorities);
+          this.estado = enabled==true ? 1 : 0;
+          this.usrlog = username;
+          this.clave = password;
+          
+	}
 			
-	public Usuarios(Integer usrcod, String usrapepat, String usrapemat,
+	public Usuarios(String username, String password, boolean enabled,List<GrantedAuthority> authorities,
+			Integer usrcod, String usrapepat, String usrapemat,
 			String usrnom, String usrlog, String usrclv, String usrenc,
 			Integer usrstsreg, String usrufclv, String usrfchmod,
 			Integer usrmod, String usrhramod, String usrmai, String usrfchcrc,
 			Integer usrcrc, String usrhracrc, String usrfchlog, Integer trbcod,
 			String usrwkscre, String usrwksmod, String usrclv3, String usrclv2,
 			Integer usrvcrono) {
-		super();
+		super(username, password, enabled, true, true, true, authorities);
+		this.estado = enabled==true ? 1 : 0;
+        this.usrlog = username;
+        this.clave = password;
+        
 		this.usrcod = usrcod;
 		this.usrapepat = usrapepat;
 		this.usrapemat = usrapemat;
@@ -253,5 +292,21 @@ public class Usuarios {
         return String.format("{codigo=%s,nombre=%s}", usrcod, usrnom + " " +
         		usrapepat + " " + usrapemat) ;
     }
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+
+	public Integer getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Integer estado) {
+		this.estado = estado;
+	}
 
 }
