@@ -7,25 +7,26 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import pe.com.munmiraflores.gestiondocumental.domain.Usuarios;
+import pe.com.munmiraflores.gestiondocumental.domain.UsuariosSystem;
 
 @Repository
 public class UsuariosDAOImpl  extends BaseDAO implements UsuarioDao{
 
 	@Override
-	public Usuarios obtenerUsuarioPorUsername(String username) {
+	public UsuariosSystem obtenerUsuarioPorUsername(String username) {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		Usuarios usr = null;
+		UsuariosSystem usr = null;
 		try {
+			
 			String query = "Select * from nsbusr01 where usrlog = ? ";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, username);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				usr = new Usuarios(rs.getString("usrlog"), rs.getString("clave"), rs.getInt("estado")==1?true:false, Usuarios.uno());
+				usr = new UsuariosSystem(rs.getString("usrlog"), rs.getString("clave"), rs.getInt("estado")==1?true:false, UsuariosSystem.uno() );
 				usr.setUsrapepat( rs.getString("usrapepat"));
 			}
 		} catch (SQLException e) {
@@ -36,7 +37,7 @@ public class UsuariosDAOImpl  extends BaseDAO implements UsuarioDao{
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		return null;
+		return usr;
 	}
 
 }

@@ -1,6 +1,7 @@
 package pe.com.munmiraflores.gestiondocumental.service;
 
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +10,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.stereotype.Repository;
 
 import pe.com.munmiraflores.gestiondocumental.dao.UsuarioDao;
-import pe.com.munmiraflores.gestiondocumental.domain.Usuarios;
+import pe.com.munmiraflores.gestiondocumental.domain.UsuariosSystem;
 
 @Repository("userLoginService")
 public class AutenticacionJdbcDaoImpl extends JdbcDaoImpl{
@@ -33,15 +34,15 @@ public class AutenticacionJdbcDaoImpl extends JdbcDaoImpl{
 			
 			UserDetails user = super.loadUserByUsername(username);
 			logger.debug("usuario login "+user.toString());
-			Usuarios usuario =  usuarioDao.obtenerUsuarioPorUsername(username);
+			UsuariosSystem usuario =  usuarioDao.obtenerUsuarioPorUsername(username);
 			
-			Usuarios ubean = new Usuarios(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), usuario.getAuthorities() );
-			ubean.setUsrlog(user.getUsername());
+			UsuariosSystem ubean = new UsuariosSystem(
+					user.getUsername(), 
+					user.getPassword(),
+					user.isEnabled(), 
+					user.getAuthorities() );
+			ubean.setUsrlog(usuario.getUsrlog());
 			ubean.setClave(user.getPassword());
-		//	ubean.setUsrnombrevh(usuario.getUsrnombrevh());
-		//	ubean.setUsrapepaternovh(usuario.getUsrapepaternovh());
-		//	ubean.setUsrapematernovh(usuario.getUsrapematernovh());
-		//	ubean.setUsrfechanacimientodt(usuario.getUsrfechanacimientodt());
 			ubean.setEstado( user.isEnabled()==true?1:0);
 			logger.debug("*********"+ubean.toString());
 			return ubean;	

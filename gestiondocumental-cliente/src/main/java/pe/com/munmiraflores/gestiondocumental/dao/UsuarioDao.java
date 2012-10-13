@@ -1,9 +1,9 @@
 package pe.com.munmiraflores.gestiondocumental.dao;
 
-import pe.com.munmiraflores.gestiondocumental.domain.Usuarios;
+import pe.com.munmiraflores.gestiondocumental.domain.UsuariosSystem;
 
 public interface UsuarioDao {
 
-	public Usuarios obtenerUsuarioPorUsername(String username);
+	public UsuariosSystem obtenerUsuarioPorUsername(String username);
 	
 }

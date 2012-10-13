@@ -13630,8 +13630,9 @@ INSERT INTO `RHDTRB01` VALUES (1654, '7', 'N0110730', str_to_date('19-09-2012', 
 
 alter table nsbusr01 add column clave varchar(50) null;
 alter table nsbusr01 add column estado int(11) null;
-
-
+update nsbusr01 set clave='e10adc3949ba59abbe56e057f20f883e', estado =1 ;
+insert into authorities (authority, username)values
+('ROLE_USER', 'MSILVA');
 
 create table authorities(
 	authority varchar(50) not null,

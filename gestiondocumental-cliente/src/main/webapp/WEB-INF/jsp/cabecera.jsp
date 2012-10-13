@@ -7,10 +7,10 @@
 	</p>
 	<c:if test="${s_expediente != null}">
 	<ul>	
-		<li><a href="${pageContext.request.contextPath}/gestion/general.htm">Datos Generales</a></li>
-		<li><a href="${pageContext.request.contextPath}/gestion/seguimiento.htm">Seguimiento</a></li>
-		<li><a href="${pageContext.request.contextPath}/gestion/anexos.htm">Anexos</a></li>
-		<li><a href="${pageContext.request.contextPath}/gestion/recibo.htm">Recibo</a></li>
+		<li><a href="${pageContext.request.contextPath}/general.htm">Datos Generales</a></li>
+		<li><a href="${pageContext.request.contextPath}/seguimiento.htm">Seguimiento</a></li>
+		<li><a href="${pageContext.request.contextPath}/anexos.htm">Anexos</a></li>
+		<li><a href="${pageContext.request.contextPath}/recibo.htm">Recibo</a></li>
 		<li><a href="${pageContext.request.contextPath}/contactenos.jsp">Contactenos</a></li>
 	</ul>
 	</c:if>
@@ -19,16 +19,16 @@
 		<div id="headerPanleft">
 			<c:if test="${s_expediente != null}">			
 			<div id="ourblog">
-				<a href="${pageContext.request.contextPath}/gestion/general.htm"><h2>Datos Generales</h2></a>
+				<a href="${pageContext.request.contextPath}/general.htm"><h2>Datos Generales</h2></a>
 			</div>
 			<div id="possib">
-				<a href="${pageContext.request.contextPath}/gestion/seguimiento.htm"><h2>Seguimiento</h2></a>
+				<a href="${pageContext.request.contextPath}/seguimiento.htm"><h2>Seguimiento</h2></a>
 			</div>
 			<div id="solution">
-				<a href="${pageContext.request.contextPath}/gestion/recibo.htm"> <h2>Recibos</h2> </a>
+				<a href="${pageContext.request.contextPath}/recibo.htm"> <h2>Recibos</h2> </a>
 			</div>
 			<div id="solution">
-				<a href="${pageContext.request.contextPath}/gestion/anexos.htm"> <h2>Anexos</h2> </a>
+				<a href="${pageContext.request.contextPath}/anexos.htm"> <h2>Anexos</h2> </a>
 			</div>
 			</c:if>
 		</div>

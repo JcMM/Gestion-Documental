@@ -10,19 +10,19 @@
         <!-- Configure Spring Security -->
         <http auto-config="true">
                 
-                 <intercept-url pattern="/css/*" filters="none"/>
+                <intercept-url pattern="/css/*" filters="none"/>
                 <intercept-url pattern="/img/*" filters="none"/>
                 <intercept-url pattern="/js/*" filters="none"/>
                 <intercept-url pattern="/images/*" filters="none"/>
                 <intercept-url pattern="/login.htm" filters="none"/>
-                <intercept-url pattern="/login.htm" filters="none"/>    
+                <intercept-url pattern="/redirect.jsp" filters="none"/>
                 <intercept-url pattern="/**" access="ROLE_USER"/>
-                <form-login login-page="/login.htm"  
+                <form-login login-page="/login.htm"
                                         default-target-url="/home.htm" 
                                         authentication-failure-url="/login.htm?login_error=1"
                                         always-use-default-target="true" />
                 <http-basic/>                
-                <logout invalidate-session="true" logout-success-url="/login.jsp" />                                
+                <logout invalidate-session="true" logout-success-url="/login.htm" />                                
                 <remember-me />
                 
         </http>

@@ -86,8 +86,13 @@ public class Documentos {
 	private Cargo cargo;
 	private Usuarios usuariosa;
 	private Usuarios usuariosb;
-
 	
+	public Documentos() {
+		super();
+		this.usuariosa = new Usuarios();
+		this.usuariosb = new Usuarios();
+	}
+
 	public Integer getDoccod() {
 		return doccod;
 	}
