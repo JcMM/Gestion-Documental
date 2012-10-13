@@ -24,9 +24,9 @@
 				
 				Lista de usuarios y documentos consultados
 				
-				usuario uno 
-				usuario dos
-				
+				<c:forEach items="${cola}" var="usu">
+					${usu}<br/>
+				</c:forEach>
 
 			</div>
 		</div>

@@ -17,13 +17,11 @@ public class AdminController {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
 	
-	@Autowired
-	private JmsTemplate jmsTemplate;
-	
 	@RequestMapping(value ="/admin/usuarios.htm" )
 	public String general( ModelMap model , HttpServletRequest request, HttpServletResponse response ){
 		logger.debug("por mostrar la lista de usuarios");
 		
+		model.put("cola", request.getSession().getAttribute("lusuariocola") );
 		
 		return "admin/usuarios";
 	}
