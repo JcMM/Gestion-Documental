@@ -4,13 +4,17 @@
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jms="http://www.springframework.org/schema/jms"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	   		http://www.springframework.org/schema/context
 	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+			http://www.springframework.org/schema/jms 
+			http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+			">
 	
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
@@ -67,6 +71,29 @@
     -->
     
     <import resource="security-config.xml" />
-    
+       
      
+     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>tcp://localhost:61616</value>
+		</property>
+	</bean>
+
+	<!--  para enviar mensajes a server MQ -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+	</bean>
+	
+	<!-- LISTENER -->
+	<bean id="queueListener"  class="pe.com.munmiraflores.gestiondocumental.mq.ColasListener"/>
+		
+	<!-- le indicamos como es que debe oir al Mq server -->
+	<!--  destination-type="queue" para segiur una cola en MQ -->
+	<!--  destination-type="topic" para que varios coloquemos y escuchemos un mismo topic-->
+	<jms:listener-container destination-type="queue">
+		<!-- para que escuche al topic o cola qwerty ref = beanListener -->
+		<jms:listener destination="cola_docs" ref="queueListener" />
+	</jms:listener-container>
+	
+	
 </beans>

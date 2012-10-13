@@ -1,3 +1,4 @@
+<%@ taglib uri='http://www.springframework.org/security/tags' prefix='security'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="topPan">
 	<p>&nbsp;</p>
@@ -5,15 +6,19 @@
 	<p class="Estilo1">
 		<a href="${pageContext.request.contextPath}/index.jsp"><span class="Estilo5">Gestion Documental</span> </a>
 	</p>
+	
+	<ul>
+		<security:authorize ifAnyGranted="ROLE_ADMIN">
+		<li><a href="${pageContext.request.contextPath}/admin/usuarios.htm">Usuarios</a></li>
+		</security:authorize>
 	<c:if test="${s_expediente != null}">
-	<ul>	
 		<li><a href="${pageContext.request.contextPath}/general.htm">Datos Generales</a></li>
 		<li><a href="${pageContext.request.contextPath}/seguimiento.htm">Seguimiento</a></li>
 		<li><a href="${pageContext.request.contextPath}/anexos.htm">Anexos</a></li>
 		<li><a href="${pageContext.request.contextPath}/recibo.htm">Recibo</a></li>
 		<li><a href="${pageContext.request.contextPath}/contactenos.jsp">Contactenos</a></li>
-	</ul>
 	</c:if>
+	</ul>
 </div>
 	<div id="headerPan">
 		<div id="headerPanleft">

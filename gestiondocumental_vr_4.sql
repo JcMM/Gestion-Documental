@@ -13632,7 +13632,9 @@ alter table nsbusr01 add column clave varchar(50) null;
 alter table nsbusr01 add column estado int(11) null;
 update nsbusr01 set clave='e10adc3949ba59abbe56e057f20f883e', estado =1 ;
 insert into authorities (authority, username)values
-('ROLE_USER', 'MSILVA');
+('ROLE_USER', 'MSILVA'),
+('ROLE_ADMIN', 'MSILVA'),
+('ROLE_USER', 'LMARTINEZ');
 
 create table authorities(
 	authority varchar(50) not null,
