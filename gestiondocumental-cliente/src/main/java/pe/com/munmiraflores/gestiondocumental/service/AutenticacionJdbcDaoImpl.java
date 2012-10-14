@@ -44,6 +44,10 @@ public class AutenticacionJdbcDaoImpl extends JdbcDaoImpl{
 			ubean.setUsrlog(usuario.getUsrlog());
 			ubean.setClave(user.getPassword());
 			ubean.setEstado( user.isEnabled()==true?1:0);
+			
+			ubean.setUsrapemat( usuario.getUsrapemat());
+			ubean.setUsrapepat( usuario.getUsrapepat());
+			
 			logger.debug("*********"+ubean.toString());
 			return ubean;	
 		} catch (Exception e) {

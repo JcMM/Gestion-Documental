@@ -32,7 +32,7 @@ public class LoginController {
 		logger.debug("home" );
 		
 		//aqui envio un mensaje a la cola para que sepan que he iniciado session
-		jmsTemplate.convertAndSend("cola_docs", " Hola, soy " + UsuariosSystem.getUsuarioBean().getUsername()+  ", acado de iniciar session.");
+		jmsTemplate.convertAndSend("cola_docs", " Login : " + UsuariosSystem.getUsuarioBean().getUsername() );
 		return "index";
 	}
 }

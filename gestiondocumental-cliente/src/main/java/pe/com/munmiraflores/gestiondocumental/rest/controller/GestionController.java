@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import pe.com.munmiraflores.gestiondocumental.domain.DetRecibo;
 import pe.com.munmiraflores.gestiondocumental.domain.Documentos;
 import pe.com.munmiraflores.gestiondocumental.domain.Recibos;
 import pe.com.munmiraflores.gestiondocumental.domain.Seguimiento;
+import pe.com.munmiraflores.gestiondocumental.domain.UsuariosSystem;
 import pe.com.munmiraflores.gestiondocumental.service.GestiondocumentalService;
 
 import com.google.gson.Gson;
@@ -28,6 +30,9 @@ public class GestionController {
 	
 	@Autowired
 	private GestiondocumentalService gestiondocumentalService;
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -45,8 +50,20 @@ public class GestionController {
 			d = gestiondocumentalService.getDatosGenerales(anio, nrodoc, tipodoc);
 			
 			if( d != null){
-				request.getSession().setAttribute("s_expediente", d );			
+				if( d.getTpodoccod() != null){
+					
+					jmsTemplate.convertAndSend("cola_docs", " DOC:  " + UsuariosSystem.getUsuarioBean().getUsername()+  " ->  " + d.getTiponumeroanio() );
+					request.getSession().setAttribute("s_expediente", d );	
+					
+				}else{
+					model.put("msgError","No se ha encontrado un resultado valido");
+					return "index";	
+				}
+			}else{
+				model.put("msgError","El servicio no ha enviado respuesta");
+				return "index";
 			}
+				
 			
 			model.put("expediente", d);
 			

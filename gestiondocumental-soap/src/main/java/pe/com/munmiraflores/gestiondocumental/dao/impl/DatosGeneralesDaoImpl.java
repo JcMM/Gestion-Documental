@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import pe.com.munmiraflores.gestiondocumental.dao.BaseDAO;
 import pe.com.munmiraflores.gestiondocumental.dao.DatosGeneralesDAO;
 import pe.com.munmiraflores.gestiondocumental.domain.Cargo;
 import pe.com.munmiraflores.gestiondocumental.domain.Documentos;
+import pe.com.munmiraflores.gestiondocumental.domain.Estadistico;
 import pe.com.munmiraflores.gestiondocumental.domain.Estados;
 import pe.com.munmiraflores.gestiondocumental.domain.Personas;
 import pe.com.munmiraflores.gestiondocumental.domain.UnidadOrganica;
@@ -104,5 +107,81 @@ public class DatosGeneralesDaoImpl extends BaseDAO implements DatosGeneralesDAO 
 		return objDocumentos;
 	}
 
+	
+	public List<Estadistico> estadisticoPorEstado( ) throws DAOExcepcion {
+		System.out.println("DatosGeneralesDAO: estadisticoPorEstado()");
+		String query = "SELECT DISTINCT   e.stsdscabv ,d.tpodoccod, count(d.tpodoccod) as cantidad "+
+					" from tdddoc01 d "+
+					" INNER JOIN tdbest01 e  ON d.docstscod = e.stscod "+
+					" where d.docanonum=2012 and d.tpodoccod in ('EXPE','CEXT','SOLI') "+
+					" group by  e.stsdscabv , d.tpodoccod "+
+					" order by e.stsdscabv asc, d.tpodoccod ";
+		Estadistico objeto = new Estadistico();
+		List<Estadistico> lista = new ArrayList<Estadistico>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				objeto = new Estadistico();
+				objeto.setCantidad(rs.getInt( "cantidad" ));
+				objeto.setTipo(rs.getString("tpodoccod"));
+				objeto.setEstado(rs.getString("stsdscabv"));
+				lista.add(objeto);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return lista;
+	}
+	
+
+	
+	public List<Estadistico> estadisticoPorUnidadOrganica( ) throws DAOExcepcion {
+		System.out.println("DatosGeneralesDAO: estadisticoPorUnidadOrganica()");
+		String query = "SELECT DISTINCT  d.docuoactco,u.uniorgnom,d.tpodoccod, count(*) as cantidad "+
+						" from tdddoc01 d "+
+						" INNER JOIN rhduor01 u  ON u.uniorgcod =  d.docuoactco "+
+						" where d.docanonum=2012 and d.tpodoccod in ('EXPE','CEXT','SOLI') "+
+						" group by  d.docuoactco,u.uniorgnom,d.tpodoccod "+
+						" order by d.docuoactco asc,u.uniorgnom,d.tpodoccod asc ";
+		Estadistico objeto = new Estadistico();
+		List<Estadistico> lista = new ArrayList<Estadistico>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				objeto = new Estadistico();
+				objeto.setCantidad(rs.getInt( "cantidad" ));
+				objeto.setTipo(rs.getString("tpodoccod"));
+				objeto.setDocuoactco(rs.getInt("docuoactco"));
+				objeto.setUnidad(rs.getString("uniorgnom"));
+				lista.add(objeto);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return lista;
+	}
+	
+
+	
 }
 

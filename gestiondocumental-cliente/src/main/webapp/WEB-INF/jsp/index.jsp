@@ -30,6 +30,9 @@
           <p>&nbsp;</p>
           <hr />
           <p>&nbsp;</p>
+          
+          <div align="center" style="color: red"> <c:out value="${msgError}"/> </div>
+          
         </div>
         <div class="Estilo4" id="Layer7">INGRESE NUMERO DE DOCUMENTO: </div>        
       </div>
