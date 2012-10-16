@@ -7,9 +7,14 @@ http://miforo5.blogspot.com/
 
 JUAN LUIS LOZADA CEDILLO
 U200821207
+
 http://jlozadac.blogspot.com/
 
-ANGEL ENRIQUE ÑONTOL CAHUI
+http://juanluislozadac.blogspot.com/
+
+http://arquitecturagson.blogspot.com/2012/10/arquitectura-gson.html
+
+ANGEL ENRIQUE ï¿½ONTOL CAHUI
 U201100609
 http://ae0719.blogspot.com/
 
