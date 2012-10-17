@@ -13626,19 +13626,19 @@ INSERT INTO `RHDTRB01` VALUES (1652, '7', 'N0110421', str_to_date('11-09-2012', 
 INSERT INTO `RHDTRB01` VALUES (1653, '7', 'N0097474', str_to_date('18-09-2012', '%d-%m-%Y'), str_to_date('01-01-0001', '%d-%m-%Y'), 1, 'RUBIO RAMIREZ ROCIO NORMA          ', 0, 0, str_to_date('01-01-0001', '%d-%m-%Y'), str_to_date('01-01-0001', '%d-%m-%Y'), '        ', '        ', '               ', '               ');
 INSERT INTO `RHDTRB01` VALUES (1654, '7', 'N0110730', str_to_date('19-09-2012', '%d-%m-%Y'), str_to_date('01-01-0001', '%d-%m-%Y'), 1, 'LINARES PALOMINO BLANCA            ', 0, 0, str_to_date('01-01-0001', '%d-%m-%Y'), str_to_date('01-01-0001', '%d-%m-%Y'), '        ', '        ', '               ', '               ');
 
-
-
 alter table nsbusr01 add column clave varchar(50) null;
 alter table nsbusr01 add column estado int(11) null;
+
 update nsbusr01 set clave='e10adc3949ba59abbe56e057f20f883e', estado =1 ;
-insert into authorities (authority, username)values
-('ROLE_USER', 'MSILVA'),
-('ROLE_ADMIN', 'MSILVA'),
-('ROLE_USER', 'LMARTINEZ');
 
 create table authorities(
 	authority varchar(50) not null,
 	username varchar(50) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into authorities (authority, username)values
+('ROLE_USER', 'MSILVA'),
+('ROLE_ADMIN', 'MSILVA'),
+('ROLE_USER', 'LMARTINEZ');
 
 
